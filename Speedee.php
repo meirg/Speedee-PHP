@@ -2,12 +2,12 @@
 
 namespace SpeeDee;
 
-function GetFileContents($rel_name){
+function _GetFileContents($rel_name){
 	return file_get_contents(dirname(__FILE__).'/'.$rel_name);
 }
 
 function _GetZoneTable($origin_zip){
-	$csv = explode(PHP_EOL, GetFileContents('ZoneTables.CSV'));
+	$csv = explode(PHP_EOL, _GetFileContents('ZoneTables.CSV'));
 	if(count($csv) <= 2)	return false;
 	array_shift($csv); // Skip Headers
 	while(!is_null($r = array_shift($csv))) {
@@ -20,7 +20,7 @@ function _GetZoneTable($origin_zip){
 }
 
 function _GetZoneFromTable($table, $dest_zip){
-	$csv = explode(PHP_EOL, GetFileContents('zones/SP'.(int)substr($table, 2).'.CSV'));
+	$csv = explode(PHP_EOL, _GetFileContents('zones/SP'.(int)substr($table, 2).'.CSV'));
 	if(count($csv) <= 2)	return false;
 	array_shift($csv); // Skip Headers
 	while(!is_null($r = array_shift($csv))) {
@@ -33,7 +33,7 @@ function _GetZoneFromTable($table, $dest_zip){
 }
 
 function _GetRate($zone, $weight){
-	$csv = explode(PHP_EOL, GetFileContents('RatesOnly.csv'));
+	$csv = explode(PHP_EOL, _GetFileContents('RatesOnly.csv'));
 	if(count($csv) <= 2)	return false;
 	$weight = ceil($weight);
 	foreach($csv as $max_weight => $zones){
