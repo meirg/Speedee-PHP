@@ -8,9 +8,10 @@ I'm not responsible for wrong results. This does not currently handle additional
 
 Setup
 ------------
+Download latest rates file from http://www.speedeedelivery.com/rates.html
 
-	Download latest rates file from http://www.speedeedelivery.com/rates.html
-	Extract the following files to the same folder as Speedee.php:
+Extract the following files to the same folder as Speedee.php:
+
 		/ZoneTables.CSV
 		/RatesOnly.csv
 		/zones/*.CSV (SPxxx.CSV)
