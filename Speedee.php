@@ -3,11 +3,13 @@
 namespace SpeeDee;
 
 function _GetFileContents($rel_name){
-	return file_get_contents(dirname(__FILE__).'/'.$rel_name);
+	if(file_exists(__DIR__.'/'.$rel_name))
+		return file_get_contents(__DIR__.'/'.$rel_name);
+	return false;
 }
 
 function _GetZoneTable($origin_zip){
-	$csv = explode(PHP_EOL, _GetFileContents('ZoneTables.CSV'));
+	$csv = explode(PHP_EOL, _GetFileContents('ZoneTables.CSV') ?: _GetFileContents('zones/ZoneTables.CSV'));
 	if(count($csv) <= 2)	return false;
 	array_shift($csv); // Skip Headers
 	while(!is_null($r = array_shift($csv))) {
